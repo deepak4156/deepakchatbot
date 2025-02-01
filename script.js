@@ -1,10 +1,10 @@
-const chatsContainer = document.querySelector('.chats-container');
-const promptForm = document.querySelector('.prompt-form');
-const promptInput = document.querySelector('.prompt-input');
+const chatsContainer = document.querySelector(".chats-container");
+const promptForm = document.querySelector(".prompt-form");
+const promptInput = document.querySelector(".prompt-input");
 const API_KEY = "AIzaSyBK7FiFYl-syhYWh0a6_qF82dELbsL68UE";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
-let userMessage = "";
+let userMessage = " ";
 
 const chatHistory = [];
 
@@ -33,10 +33,10 @@ const generateResponse = async (botMsgDIV) => {
         });
 
         const data = await response.json();
-        if(response.ok) throw new Error(data.error.message);
+        if(!response.ok) throw new Error(data.error.message);
 
         //process the response and send it 
-        const responseText = data.candidates[0].content[0].parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
+        const responseText = data.candidates[0].content.parts[0].text.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
         textElement.textContent = responseText;
     } catch (error) {
         console.log(error);
@@ -47,11 +47,11 @@ const generateResponse = async (botMsgDIV) => {
 //handle the form submission
 const handleFormSubmit = (e) => {
     e.preventDefault();
-    userMessage = promptInput.ariaValueMax.trim();
+    userMessage = promptInput.value.trim();
 
-    if (!userMessage) {
-        return;
-    };
+    if (!userMessage) return;
+    console.log(userMessage);
+    
 
     promptInput.value = '';
 
@@ -70,4 +70,4 @@ const handleFormSubmit = (e) => {
     }, 600);
 }
 
-promptForm = addEventListener('Submit', handleFormSubmit);
+promptForm.addEventListener("submit", handleFormSubmit);
