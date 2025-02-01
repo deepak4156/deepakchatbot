@@ -118,33 +118,38 @@ body{
     gap: 20px;
     flex-direction: column;
 }
-
-.chats-container .message{
-    display: flex;
-    gap: 11px;
-    align-items: center;
-}
-
 .chats-container .bot-message .avatar{
     height: 43px;
     width: 43px;
     flex-shrink: 0;
     padding: 6px;
     align-self: flex-start;
-    margin-right: 50%;
+    margin-right: -7px;
     border-radius: 50%;
     background: var(--secondary-color);
     border: 1px solid var(--secondary-hover-color);
 }
-.chats-container .bot-message{
-    margin: 9px auto;
-}
 
+.chats-container .message{
+    display: flex;
+    gap: 11px;
+    align-items: center;
+}
 .chats-container .message .message-text{
     padding: 3px 16px;
     word-wrap: break-word;
     white-space: pre-line;
 }
+
+.chats-container .bot-message{
+    margin: 9px auto;
+}
+
+.chats-container .user-message{
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 
 .chats-container .user-message .message-text{
     padding: 12px 16px;
@@ -152,6 +157,12 @@ body{
     border-radius: 13px 13px 3px 13px;
     background: var(--secondary-color);
 }
+
+
+
+
+
+
 
 
 
@@ -224,7 +235,7 @@ body{
 
 .prompt-form #send-prompt-btn{
     color: #fff;
-    display: none;
+    
     background: #1d7efd;
 }
 .prompt-form #send-prompt-btn:valid ~ .prompt-actions #send-prompt-btn{
